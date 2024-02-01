@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter Application</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: linear-gradient(45deg, #dbd034, #e85608);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #counter-box {
+      border: 2px solid #cbe3d5;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.91);
+      margin-top: 20px;
+    }
+    h1 {
+      color: #fff;
+      font-size: 24px;
+      opacity: 0;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    #counter {
+      font-size: 48px;
+      font-weight: bold;
+      color: powderblue;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 5px;
+      cursor: pointer;
+      background-color: #f10386;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #counter-box {
+      width: 60%;
+    }
+
+    @media (max-width: 768px) {
+      #counter-box {
+        width: 80%;
+      }
+    }
+
+    @media (max-width: 576px) {
+      #counter-box {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Counter Application</h1>
+  <p>Counter: <span id="counter">0</span></p>
+  <button onclick="countUp()">Count Up</button>
+  <button onclick="countDown()">Count Down</button>
+  <button onclick="pause()">Pause</button>
+
+  <script>
+    let counterValue = 0;
+    let intervalId;
+
+    function updateCounterDisplay() {
+      document.getElementById('counter').innerText = counterValue;
+    }
+
+    function countUp() {
+      counterValue++;
+      updateCounterDisplay();
+    }
+
+    function countDown() {
+      if (counterValue > 0) {
+        counterValue--;
+        updateCounterDisplay();
+      }
+    }
+
+    function pause() {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      } else {
+        intervalId = setInterval(countUp, 1000); // Adjust the interval as needed (e.g., 1000 milliseconds for 1 second)
+      }
+    }
+  </script>
+</body>
+</html>
